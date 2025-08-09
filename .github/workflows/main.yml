@@ -1,0 +1,5 @@
+User → GitHub Pages Form (HTML + JS) → POST JSON to Google Apps Script Web App
+       ↓
+Google Apps Script → Append Row in Google Sheet with Complaint Data + ID + Status="Pending"
+       ↓
+Admin → Google Sheet → Update Status → (Optional) Notification sent to User
