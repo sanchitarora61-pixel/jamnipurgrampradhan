@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You - Jamnipur</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; text-align: center; }
+    .box { background: white; padding: 30px; border-radius: 10px; display: inline-block; margin-top: 50px; }
+    .tracking { color: #2e7d32; font-size: 1.2em; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Thank You for Your Submission!</h2>
+    <p>Your complaint has been received.</p>
+    <div class="tracking">
+      Your Tracking ID: <span id="trackingId"></span>
+    </div>
+    <p>Please save this ID to track your complaint status.</p>
+    <a href="index.html">Back to Home</a>
+  </div>
+  <script>
+    // Get tracking ID from localStorage and display
+    document.getElementById('trackingId').textContent = localStorage.getItem('trackingId') || 'N/A';
+    // Optionally, clear the tracking ID after displaying
+    // localStorage.removeItem('trackingId');
+  </script>
+</body>
+</html>

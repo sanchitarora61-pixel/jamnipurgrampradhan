@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Track Complaint - Jamnipur</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Track Your Complaint</h2>
+  <form id="trackForm"></form>
+  <label for="complaintId">Enter Complaint ID:</label>
+  <input type="text" id="complaintId" name="complaintId" required>
+  <button type="submit">Check Status</button>
+  </form>
+  <div id="statusResult"
+    style="margin-top:20px; display:none; background:#fff; padding:15px; border-radius:8px; box-shadow:0 2px 6px #ccc;">
+  </div>
+
+  <script>
+    document.getElementById('trackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var complaintId = document.getElementById('complaintId').value.trim();
+      var statusDiv = document.getElementById('statusResult');
+      // Demo: Replace this with actual status lookup logic
+      if (complaintId === "") {
+        statusDiv.style.display = 'none';
+        return;
+      }
+      // Example statuses for demonstration
+      var statuses = {
+        "12345": { status: "Resolved", details: "Your complaint has been resolved on 2024-06-01." },
+        "67890": { status: "In Progress", details: "Your complaint is being processed." }
+      };
+      if (statuses[complaintId]) {
+        statusDiv.innerHTML = "<strong>Status:</strong> " + statuses[complaintId].status + "<br><strong>Details:</strong> " + statuses[complaintId].details;
+        statusDiv.style.display = 'block';
+      } else {
+        statusDiv.innerHTML = "<span style='color:red;'>Complaint ID not found. Please check and try again.</span>";
+        statusDiv.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+
+</html>
