@@ -68,7 +68,12 @@
 
     <button type="submit">Submit Complaint</button>
   </form>
-
+  <form action="AKfycbxhmnUbQDjAcxj4l-ovqsia6C87krwM4rtrr4WHqr7A5_gT6ptPKe5wf6BEeUE_vWLCWw" method="POST" id="complaintForm">
+    
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
   <script>
     document.getElementById('complaintForm').addEventListener('submit', function (e) {
       e.preventDefault();
