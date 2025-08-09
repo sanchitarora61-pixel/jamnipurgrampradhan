@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>जमनिपुर ग्राम पंचायत शिकायत पोर्टल</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      margin: 40px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>जमनिपुर ग्राम पंचायत शिकायत पोर्टल</h2>
+    <form action="YOUR_DEPLOYED_WEBAPP_URL" method="POST" id="complaintForm">
+      <label for="fullName">पूरा नाम *</label>
+      <input type="text" id="fullName" name="Full Name" placeholder="अपना नाम दर्ज करें" required />
+
+      <label for="contactNumber">संपर्क नंबर *</label>
+      <input type="tel" id="contactNumber" name="Contact Number" pattern="[0-9]{10}" title="10 अंकों का मोबाइल नंबर दर्ज करें" placeholder="मोबाइल नंबर" required />
+
+      <label for="address">पता *</label>
+      <textarea id="address" name="Address" rows="3" placeholder="पूरा पता लिखें" required></textarea>
+
+      <label for="complaintSubject">शिकायत का विषय *</label>
+      <input type="text" id="complaintSubject" name="Complaint Subject" placeholder="संक्षेप में लिखें" required />
+
+      <label for="complaintDetails">शिकायत का विवरण *</label>
+      <textarea id="complaintDetails" name="Complaint Details" rows="4" placeholder="विस्तार से लिखें" required></textarea>
+
+      <label for="locationIssue">समस्या का स्थान (वैकल्पिक)</label>
+      <textarea id="locationIssue" name="Specific Location of the Issue" rows="2" placeholder="अगर पता से अलग है तो लिखें"></textarea>
+
+      <button type="submit">शिकायत दर्ज करें</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('complaintForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = {
+        "Full Name": document.getElementById('fullName').value,
+        "Contact Number": document.getElementById('contactNumber').value,
+        "Address": document.getElementById('address').value,
+        "Complaint Subject": document.getElementById('complaintSubject').value,
+        "Complaint Details": document.getElementById('complaintDetails').value,
+        "Specific Location of the Issue": document.getElementById('locationIssue').value
+      };
+
+      fetch(this.action, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => response.json())
+        .then(response => {
+          if(response.result === "success") {
+            alert('शिकायत सफलतापूर्वक दर्ज हो गई। धन्यवाद!');
+            this.reset();
+          } else {
+            alert('कोई समस्या हुई, कृपया बाद में पुनः प्रयास करें।');
+          }
+        })
+        .catch(() => {
+          alert('नेटवर्क त्रुटि, कृपया जांचें और पुनः प्रयास करें।');
+        });
+    });
+  </script>
+</body>
+</html>
